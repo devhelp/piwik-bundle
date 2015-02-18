@@ -1,0 +1,40 @@
+{
+    "name": "devhelp/piwik-bundle",
+    "type": "symfony-bundle",
+    "description": "",
+    "keywords": ["piwik"],
+    "homepage": "http://devhelp.pl",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paweł Barański",
+            "email": "pawel.baranski1@gmail.com"
+        },
+        {
+            "name":  "devhelp.pl",
+            "email": "devhelp@devhelp.pl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2",
+        "devhelp/piwik-api": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4",
+        "squizlabs/php_codesniffer": "~1"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Devhelp\\PiwikBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Devhelp\\PiwikBundle\\": ["tests"]
+        }
+    }
+}
