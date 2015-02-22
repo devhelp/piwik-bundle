@@ -12,14 +12,14 @@ class InsertParamsServices implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        $apiParams = $container->getParameter('devhelp.piwik_api.parameters');
+        $apiParams = $container->getParameter('devhelp_piwik.api.parameters');
 
         if (!$apiParams) {
             return;
         }
 
         foreach ($apiParams as $api => $params) {
-            $apiDefinition = $container->getDefinition('devhelp.piwik_api.'.$api);
+            $apiDefinition = $container->getDefinition('devhelp_piwik.api.'.$api);
 
             $defaultParams = array();
 

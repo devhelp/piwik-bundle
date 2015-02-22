@@ -45,7 +45,7 @@ class DevhelpPiwikExtensionIntegrationTest extends \PHPUnit_Framework_TestCase
 
         $this->extension->load(array($configuration), $this->container);
 
-        $apiServiceId = 'devhelp.piwik_api.frontend';
+        $apiServiceId = 'devhelp_piwik.api.frontend';
 
         /**
          * has definition for the registered instance
@@ -55,12 +55,12 @@ class DevhelpPiwikExtensionIntegrationTest extends \PHPUnit_Framework_TestCase
         /**
          * aliases default api (first registered)
          */
-        $this->assertSame($apiServiceId, (string) $this->container->getAlias('devhelp.piwik_api'));
+        $this->assertSame($apiServiceId, (string) $this->container->getAlias('devhelp_piwik.api'));
 
         /**
          * aliases default api as well
          */
-        $this->assertSame($apiServiceId, (string) $this->container->getAlias('devhelp.piwik_api.default'));
+        $this->assertSame($apiServiceId, (string) $this->container->getAlias('devhelp_piwik.api.default'));
     }
 
     /**
@@ -72,7 +72,7 @@ class DevhelpPiwikExtensionIntegrationTest extends \PHPUnit_Framework_TestCase
 
         $this->extension->load(array($configuration), $this->container);
 
-        $this->assertSame('my.client.service', $this->container->getParameter('devhelp.piwik_client.service_id'));
+        $this->assertSame('my.client.service', $this->container->getParameter('devhelp_piwik.client.service_id'));
     }
 
     /**
@@ -91,6 +91,6 @@ class DevhelpPiwikExtensionIntegrationTest extends \PHPUnit_Framework_TestCase
 
         $this->extension->load(array($configuration), $this->container);
 
-        $this->assertSame(array('frontend' => $params), $this->container->getParameter('devhelp.piwik_api.parameters'));
+        $this->assertSame(array('frontend' => $params), $this->container->getParameter('devhelp_piwik.api.parameters'));
     }
 }

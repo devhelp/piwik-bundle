@@ -7,7 +7,6 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\Config\FileLocator;
 
 class DevhelpPiwikExtension extends Extension
 {
@@ -37,11 +36,11 @@ class DevhelpPiwikExtension extends Extension
 
         $this->config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('devhelp.piwik_client.service_id', $this->config['client']);
+        $container->setParameter('devhelp_piwik.client.service_id', $this->config['client']);
 
         $this->addApis();
 
-        $container->setParameter('devhelp.piwik_api.parameters', $this->apiParams);
+        $container->setParameter('devhelp_piwik.api.parameters', $this->apiParams);
     }
 
     private function addApis()
@@ -52,19 +51,19 @@ class DevhelpPiwikExtension extends Extension
 
         $firstApiName = array_keys($this->config['api'])[0];
 
-        $this->container->setAlias('devhelp.piwik_api', 'devhelp.piwik_api.'.$firstApiName);
-        $this->container->setAlias('devhelp.piwik_api.default', 'devhelp.piwik_api.'.$firstApiName);
+        $this->container->setAlias('devhelp_piwik.api', 'devhelp_piwik.api.'.$firstApiName);
+        $this->container->setAlias('devhelp_piwik.api.default', 'devhelp_piwik.api.'.$firstApiName);
     }
 
     private function addApi($name, $data)
     {
         $apiDefinition = new Definition('Devhelp\Piwik\Api\Api', array(
-            new Reference('devhelp.piwik_client'),
+            new Reference('devhelp_piwik.client'),
             $data['url']
         ));
 
         $this->apiParams[$name] = $data['default_params'];
 
-        $this->container->setDefinition('devhelp.piwik_api.'.$name, $apiDefinition);
+        $this->container->setDefinition('devhelp_piwik.api.'.$name, $apiDefinition);
     }
 }

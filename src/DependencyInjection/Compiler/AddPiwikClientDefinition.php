@@ -10,12 +10,12 @@ class AddPiwikClientDefinition implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $clientServiceId = $container->getParameter('devhelp.piwik_client.service_id');
+        $clientServiceId = $container->getParameter('devhelp_piwik.client.service_id');
 
         if (!$container->hasDefinition($clientServiceId)) {
             throw new \InvalidArgumentException("$clientServiceId service does not exists");
         }
 
-        $container->setAlias('devhelp.piwik_client', $clientServiceId);
+        $container->setAlias('devhelp_piwik.client', $clientServiceId);
     }
 }

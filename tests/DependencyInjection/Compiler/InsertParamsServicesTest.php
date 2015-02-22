@@ -35,7 +35,7 @@ class InsertParamsServicesIntegrationTest extends \PHPUnit_Framework_TestCase
 
         $this->apiDefinition = new Definition('Devhelp\Piwik\Api\Api');
 
-        $this->container->setDefinition('devhelp.piwik_api.my_api', $this->apiDefinition);
+        $this->container->setDefinition('devhelp_piwik.api.my_api', $this->apiDefinition);
 
         $this->compilerPass = new InsertParamsServices();
         $this->params = array('my_api' => array('my_param' => 'my_value'));
@@ -61,7 +61,7 @@ class InsertParamsServicesIntegrationTest extends \PHPUnit_Framework_TestCase
 
     private function when_compiler_is_processed()
     {
-        $this->container->setParameter('devhelp.piwik_api.parameters', $this->params);
+        $this->container->setParameter('devhelp_piwik.api.parameters', $this->params);
         $this->compilerPass->process($this->container);
     }
 
