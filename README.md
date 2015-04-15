@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/devhelp/piwik-bundle.svg?branch=master)](https://travis-ci.org/devhelp/piwik-bundle.svg)
+[![Build Status](https://travis-ci.org/devhelp/piwik-bundle.svg?branch=master)](https://travis-ci.org/devhelp/piwik-bundle)
 
 ## Installation
 
