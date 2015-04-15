@@ -45,11 +45,11 @@ class DevhelpPiwikExtension extends Extension
 
     private function addApis()
     {
+        $firstApiName = key($this->config['api']);
+
         foreach ($this->config['api'] as $name => $definition) {
             $this->addApi($name, $definition);
         }
-
-        $firstApiName = array_keys($this->config['api'])[0];
 
         $this->container->setAlias('devhelp_piwik.api', 'devhelp_piwik.api.'.$firstApiName);
         $this->container->setAlias('devhelp_piwik.api.default', 'devhelp_piwik.api.'.$firstApiName);
