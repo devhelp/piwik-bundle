@@ -84,7 +84,8 @@ class InsertParamsServicesIntegrationTest extends \PHPUnit_Framework_TestCase
 
     private function then_references_are_replaced_with_services()
     {
-        $defaultParams = $this->apiDefinition->getMethodCalls()[0][1];
+        $methodCalls = $this->apiDefinition->getMethodCalls();
+        $defaultParams = $methodCalls[0][1];
 
         $this->assertSame('my_value', $defaultParams['my_param']);
         $this->assertInstanceOf('Symfony\Component\DependencyInjection\Reference', $defaultParams[0]);
