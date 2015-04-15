@@ -46,7 +46,7 @@ service configuration
 
 ```yml
 my_service:
-    class: Acme\Service\MyService
+    class: Acme\DemoBundle\Service\MyService
     arguments:
         # it is an alias of first configured api (in this case it equals devhelp_piwik.api.reader service)
         - @devhelp_piwik.api
@@ -103,7 +103,7 @@ my_token_auth_provider service definition
 
 ```yml
 my_token_auth_provider:
-    class: Acme\Param\MyTokenAuthProvider
+    class: Acme\DemoBundle\Param\MyTokenAuthProvider
     arguments:
         - @security.context
 ```

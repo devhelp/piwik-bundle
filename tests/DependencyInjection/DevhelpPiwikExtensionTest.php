@@ -84,7 +84,7 @@ class DevhelpPiwikExtensionIntegrationTest extends \PHPUnit_Framework_TestCase
 
         $params = array(
             'param1' => 'value',
-            'param_service_id'
+            'param2' => 'param_service_id'
         );
 
         $configuration['api']['frontend']['default_params'] = $params;
