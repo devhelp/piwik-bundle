@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/devhelp/piwik-bundle.svg?branch=master)](https://travis-ci.org/devhelp/piwik-bundle.svg)
+
 ## Installation
 
 For more information please check [composer website](http://getcomposer.org).
