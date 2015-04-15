@@ -52,9 +52,26 @@ class InsertParamsServicesIntegrationTest extends \PHPUnit_Framework_TestCase
         $this->then_references_are_replaced_with_services();
     }
 
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function it_throws_exception_if_param_resolver_is_of_invalid_class()
+    {
+        $this->given_param_is_referencing_to_service_that_is_of_invalid_class();
+        $this->when_compiler_is_processed();
+    }
+
     private function given_params_are_referencing_to_services()
     {
         $this->container->setDefinition($this->paramServiceId, new Definition('Devhelp\PiwikBundle\Param\MyParamStub'));
+
+        $this->params['my_api'][0] = $this->paramServiceId;
+    }
+
+    private function given_param_is_referencing_to_service_that_is_of_invalid_class()
+    {
+        $this->container->setDefinition($this->paramServiceId, new Definition('Devhelp\PiwikBundle\Param\InvalidParamStub'));
 
         $this->params['my_api'][0] = $this->paramServiceId;
     }
