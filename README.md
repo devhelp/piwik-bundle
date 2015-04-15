@@ -143,7 +143,8 @@ my_piwik_method:
     class: Devhelp\Piwik\Api\Method\Method
     factory_service: devhelp_piwik.api
     factory_method: getMethod
-    arguments: 'PiwikPlugin.pluginAction'
+    arguments:
+        - VisitFrequency.get
 ```
 
 ## Credits
