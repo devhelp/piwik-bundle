@@ -2,7 +2,6 @@
 
 namespace Devhelp\PiwikBundle\DependencyInjection\Compiler;
 
-
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -24,9 +23,7 @@ class InsertParamsServices implements CompilerPassInterface
             $defaultParams = array();
 
             foreach ($params as $name => $value) {
-
                 if ($container->hasDefinition($value) || $container->hasAlias($value)) {
-
                     $definition = $container->findDefinition($value);
 
                     if (!is_a($definition->getClass(), '\Devhelp\Piwik\Api\Param\Param', true)) {
