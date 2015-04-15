@@ -1,7 +1,7 @@
 {
     "name": "devhelp/piwik-bundle",
     "type": "symfony-bundle",
-    "description": "",
+    "description": "integration of devhelp/piwik-api into symfony. Allows to create services for piwik api methods",
     "keywords": ["piwik"],
     "homepage": "http://devhelp.pl",
     "license": "MIT",
