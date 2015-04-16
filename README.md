@@ -31,7 +31,8 @@ devhelp_piwik:
 
 ### Create piwik client service that is used in config.yml
 
-This example uses built-in PiwikGuzzleClient class that is responsible for making http request to Piwik
+This example uses PiwikGuzzleClient class that is responsible for making http request to Piwik.
+You can include this extension by including [devhelp/piwik-api-guzzle](http://github.com/devhelp/piwik-api-guzzle) in your project
 
 ```yml
 my_piwik.client:
@@ -150,4 +151,4 @@ my_piwik_method:
 
 ## Credits
 
-Brought to you by : Devhelp.pl (http://devhelp.pl)
+Brought to you by : [devhelp.pl](http://devhelp.pl)
