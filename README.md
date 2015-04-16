@@ -56,7 +56,7 @@ my_service:
 service definition
 
 ```php
-namespace Acme\Service;
+namespace Acme\DemoBundle\Service;
 
 
 use Devhelp\Piwik\Api\Api;
@@ -112,7 +112,7 @@ my_token_auth_provider:
 MyTokenAuthProvider class definition
 
 ```php
-namespace Acme\Param;
+namespace Acme\DemoBundle\Param;
 
 
 use Devhelp\Piwik\Api\Param\Param;
