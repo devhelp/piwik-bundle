@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/devhelp/piwik-bundle.svg?branch=master)](https://travis-ci.org/devhelp/piwik-bundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/devhelp/piwik-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/devhelp/piwik-bundle?branch=master)
 
 ## Installation
 
