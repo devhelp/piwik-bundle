@@ -32,7 +32,7 @@ class InsertParamsServices implements CompilerPassInterface
                 }
             }
 
-            $apiDefinition->addMethodCall('setDefaultParams', $defaultParams);
+            $apiDefinition->addMethodCall('setDefaultParams', array($defaultParams));
         }
     }
 }
