@@ -36,7 +36,7 @@ You can include this extension by including [devhelp/piwik-api-guzzle](http://gi
 
 ```yml
 my_piwik.client:
-    class: Devhelp\Piwik\Api\Client\PiwikGuzzleClient
+    class: Devhelp\Piwik\Api\Guzzle\Client\PiwikGuzzleClient
     arguments:
         # guzzle service must implement GuzzleHttp\ClientInterface
         - @guzzle
