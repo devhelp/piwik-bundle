@@ -133,7 +133,7 @@ class MyTokenAuthProvider implements Param
 
     public function value()
     {
-        return array('token_auth' => $this->securityContext->getToken()->getUser()->getPiwikToken());
+        return $this->securityContext->getToken()->getUser()->getPiwikToken();
     }
 }
 ```
