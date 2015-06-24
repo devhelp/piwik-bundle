@@ -149,6 +149,10 @@ my_piwik_method:
         - VisitFrequency.get
 ```
 
+## Feedback/Requests
+
+Feel free to create an issue if you think that something is missing. Feedback is more than welcome!
+
 ## Credits
 
 Brought to you by : [devhelp.pl](http://devhelp.pl)
