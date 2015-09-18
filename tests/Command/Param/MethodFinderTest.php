@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Devhelp\PiwikBundle\DependencyInjection\Command\Param;
+namespace Devhelp\PiwikBundle\Command\Param;
 
 
 class MethodFinderTest extends \PHPUnit_Framework_TestCase

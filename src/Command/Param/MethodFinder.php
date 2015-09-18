@@ -1,6 +1,6 @@
 <?php
 
-namespace Devhelp\PiwikBundle\DependencyInjection\Command\Param;
+namespace Devhelp\PiwikBundle\Command\Param;
 
 use Devhelp\Piwik\Api\Api;
 use Devhelp\Piwik\Api\Method\Method;

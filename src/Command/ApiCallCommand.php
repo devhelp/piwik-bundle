@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Devhelp\PiwikBundle\DependencyInjection\Command;
+namespace Devhelp\PiwikBundle\Command;
 
 use Devhelp\Piwik\Api\Method\Method;
 use Devhelp\PiwikBundle\DependencyInjection\Command\Param\MethodFinder;
