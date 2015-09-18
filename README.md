@@ -11,7 +11,7 @@ $ composer require 'devhelp/piwik-bundle:dev-master'
 
 ## Purpose
 
-Bundle provides integration with Piwik API. Adds services to the dependency injection container that allows to use Piwik API methods as services.
+Bundle provides integration with [Piwik API](http://developer.piwik.org/api-reference/reporting-api). Adds services to the dependency injection container that allows to use Piwik API methods as services.
 It uses [devhelp/piwik-api](http://github.com/devhelp/piwik-api) library - check its documentation for more advanced usage.
 
 ## Usage
@@ -31,7 +31,7 @@ devhelp_piwik:
 
 ### Create piwik client service that is used in config.yml
 
-This example uses PiwikGuzzleClient class that is responsible for making http request to Piwik.
+This example uses `PiwikGuzzleClient` class that is responsible for making http request to [Piwik](http://piwik.org).
 You can include this extension by including [devhelp/piwik-api-guzzle](http://github.com/devhelp/piwik-api-guzzle) in your project
 
 ```yml
@@ -87,7 +87,7 @@ class MyService
 ### Define API parameters resolved at runtime
 
 You are allowed to set services as a params. If you do that then the service will be used to resolve the parameter
-at runtime. For example have a service that would return token_auth of logged in user
+at runtime. For example have a service that would return `token_auth` of logged in user
 
 
 ```yml
@@ -101,7 +101,7 @@ devhelp_piwik:
                 idSite: %piwik_site_id%
 ```
 
-my_token_auth_provider service definition
+`my_token_auth_provider` service definition
 
 ```yml
 my_token_auth_provider:
@@ -110,7 +110,7 @@ my_token_auth_provider:
         - @security.context
 ```
 
-MyTokenAuthProvider class definition
+`MyTokenAuthProvider` class definition
 
 ```php
 namespace Acme\DemoBundle\Param;
@@ -143,15 +143,29 @@ class MyTokenAuthProvider implements Param
 ```yml
 my_piwik_method:
     class: Devhelp\Piwik\Api\Method\Method
-    factory_service: devhelp_piwik.api
-    factory_method: getMethod
+    factory:
+        - @devhelp_piwik.api
+        - getMethod
     arguments:
         - VisitFrequency.get
 ```
 
+This depends on your Symfony version (check [here](http://symfony.com/doc/current/components/dependency_injection/factories.html))
+
+### Calling API using Symfony command
+
+`devhelp_piwik:api:call` command allows you to call the API from command line. You can do it either by specifying method service id
+or by passing method name together with api name (or use the default)
+
+for more information please run
+
+```
+$ console devhelp_piwik:api:call --help
+```
+
 ## Feedback/Requests
 
-Feel free to create an issue if you think that something is missing. Feedback is more than welcome!
+Feel free to create an issue if you think that something is missing or needs fixing. Feedback is more than welcome!
 
 ## Credits
 

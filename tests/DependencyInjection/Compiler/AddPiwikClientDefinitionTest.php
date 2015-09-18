@@ -36,7 +36,7 @@ class AddPiwikClientDefinitionTest extends \PHPUnit_Framework_TestCase
     public function it_aliases_client_service_definition()
     {
         $this->given_piwik_client_was_set();
-        $this->given_the_service_exists();
+        $this->given_custom_piwik_client_service_exists();
         $this->when_compiler_is_processed();
         $this->then_the_service_is_aliased_as_piwik_client();
     }
@@ -57,7 +57,7 @@ class AddPiwikClientDefinitionTest extends \PHPUnit_Framework_TestCase
         $this->container->setParameter('devhelp_piwik.client.service_id', $this->serviceId);
     }
 
-    private function given_the_service_exists()
+    private function given_custom_piwik_client_service_exists()
     {
         $this->container->setDefinition($this->serviceId, new Definition('Foo\Class'));
     }
