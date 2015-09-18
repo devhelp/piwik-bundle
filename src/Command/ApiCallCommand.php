@@ -46,10 +46,36 @@ class ApiCallCommand extends ContainerAwareCommand
                 'If not specified default api is used. Is ignored if "method" is passed as a service'
             )->addOption(
                 'show-response',
-                'sr',
+                'r',
                 InputOption::VALUE_NONE,
                 'If set then response is logged (if response is an object it must have toArray() or __toString() method defined!). '.
                 'Verbosity level must be at least -vv and used together with this option in order to display the response'
+            )
+            ->setHelp(<<<EOF
+The <info>%command.name%</info> command calls Piwik API method.
+
+Method can be either service id or method name:
+
+  <info>php %command.full_name% SitesManager.getAllSites</info>
+  <info>php %command.full_name% my_method_service_id</info>
+
+If method name is used then you can use <comment>--api</comment> to set api name from which the method is to be called (if not specified then default api is used):
+
+  <info>php %command.full_name% SitesManager.getAllSites --api=reader</info>
+
+Use <comment>--params</comment> in order to set call parameters (they will be merged with default params defined for the method service):
+
+  <info>php %command.full_name% my_method_service_id --params='idSite=2&token_auth=MY_TOKEN'</info>
+
+Use <comment>-vv</comment> in order to display relevant information about the ongoing request
+
+  <info>php %command.full_name% my_method_service_id -vv</info>
+
+Use <comment>--show-response</comment> together with <comment>-vv</comment> in order to display the response
+
+  <info>php %command.full_name% my_method_service_id -vv --show-response</info>
+
+EOF
             );
         // @codingStandardsIgnoreEnd
     }
@@ -82,7 +108,7 @@ class ApiCallCommand extends ContainerAwareCommand
 
         $this->logger->info('Finished');
 
-        if ($result && $input->hasOption('show-response')) {
+        if ($result && $input->getOption('show-response')) {
             $this->showResponse($result);
         }
     }
