@@ -4,8 +4,7 @@
 namespace Devhelp\PiwikBundle\Command;
 
 use Devhelp\Piwik\Api\Method\Method;
-use Devhelp\PiwikBundle\DependencyInjection\Command\Param\MethodFinder;
-use Devhelp\PiwikBundle\DependencyInjection\Command\Param\ParamCombine;
+use Devhelp\PiwikBundle\Command\Param\MethodFinder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -111,7 +110,7 @@ class ApiCallCommand extends ContainerAwareCommand
             if (method_exists($result, 'toArray')) {
                 $this->logger->info(var_export($result->toArray(), true));
             } else {
-                $this->logger->info((string)$result);
+                $this->logger->info((string) $result);
             }
         } else {
             $this->logger->info(var_export($result, true));
