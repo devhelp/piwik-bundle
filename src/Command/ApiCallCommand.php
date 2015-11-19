@@ -5,6 +5,7 @@ namespace Devhelp\PiwikBundle\Command;
 
 use Devhelp\Piwik\Api\Method\Method;
 use Devhelp\PiwikBundle\Command\Param\MethodFinder;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -48,10 +49,10 @@ class ApiCallCommand extends ContainerAwareCommand
                 'show-response',
                 'r',
                 InputOption::VALUE_NONE,
-                'If set then response is logged (if response is an object it must have toArray() or __toString() method defined!). '.
+                'If set then response is logged. '.
                 'Verbosity level must be at least -vv and used together with this option in order to display the response'
             )
-            ->setHelp(<<<EOF
+            ->setHelp(<<<HELP
 The <info>%command.name%</info> command calls Piwik API method.
 
 Method can be either service id or method name:
@@ -71,11 +72,11 @@ Use <comment>-vv</comment> in order to display relevant information about the on
 
   <info>php %command.full_name% my_method_service_id -vv</info>
 
-Use <comment>--show-response</comment> together with <comment>-vv</comment> in order to display the response
+Use <comment>--show-response</comment> together with <comment>-vv</comment> in order to display the response. <warning>Response must be PSR-7 compatible</warning>
 
   <info>php %command.full_name% my_method_service_id -vv --show-response</info>
 
-EOF
+HELP
             );
         // @codingStandardsIgnoreEnd
     }
@@ -104,18 +105,20 @@ EOF
             $this->logger->info(var_export($params, true));
         }
 
-        $result = $method->call($params);
+        $response = $method->call($params);
 
         $this->logger->info('Finished');
 
-        if ($result && $input->getOption('show-response')) {
-            $this->showResponse($result);
+        if ($input->getOption('show-response') && $response instanceof ResponseInterface) {
+            $this->logger->info('Response:');
+            $this->logger->info("- status code: ".$response->getStatusCode());
+            $this->logger->info("- body: ".$response->getBody()->getContents());
         }
     }
 
     /**
-     * @param $methodArg
-     * @param $apiOption
+     * @param string $methodArg
+     * @param string $apiOption
      * @return Method
      */
     private function getMethod($methodArg, $apiOption)
@@ -123,23 +126,5 @@ EOF
         $methodFinder = new MethodFinder($this->getContainer(), $this->logger);
 
         return $methodFinder->find($methodArg, $apiOption);
-    }
-
-    /**
-     * @param $result
-     */
-    protected function showResponse($result)
-    {
-        $this->logger->info('Result: ');
-        //duck-typing, mea culpa, improvement is on TODO list
-        if (is_object($result)) {
-            if (method_exists($result, 'toArray')) {
-                $this->logger->info(var_export($result->toArray(), true));
-            } else {
-                $this->logger->info((string) $result);
-            }
-        } else {
-            $this->logger->info(var_export($result, true));
-        }
     }
 }

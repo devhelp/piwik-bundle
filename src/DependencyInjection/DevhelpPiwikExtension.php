@@ -6,7 +6,6 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader;
 
 class DevhelpPiwikExtension extends Extension
 {
@@ -17,10 +16,10 @@ class DevhelpPiwikExtension extends Extension
     protected $config;
 
     /**
-     * @var Loader\FileLoader;
+     * params to be injected as default (per client)
+     *
+     * @var array
      */
-    protected $loader;
-
     private $apiParams = array();
 
     /**

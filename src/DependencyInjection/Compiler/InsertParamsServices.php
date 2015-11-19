@@ -19,7 +19,7 @@ class InsertParamsServices implements CompilerPassInterface
             $defaultParams = array();
 
             foreach ($params as $name => $value) {
-                if ($container->hasDefinition($value) || $container->hasAlias($value)) {
+                if ($container->has($value)) {
                     $definition = $container->findDefinition($value);
 
                     if (!is_a($definition->getClass(), '\Devhelp\Piwik\Api\Param\Param', true)) {

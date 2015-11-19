@@ -5,12 +5,15 @@ namespace Devhelp\PiwikBundle\Command\Param;
 use Devhelp\Piwik\Api\Api;
 use Devhelp\Piwik\Api\Method\Method;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Log\NullLogger;
 
+/**
+ * Finds an api method in a container that is either registered as a service or is available through
+ * the given api service by calling getMethod
+ */
 class MethodFinder
 {
-
     /**
      * @var ContainerInterface
      */
@@ -28,8 +31,8 @@ class MethodFinder
     }
 
     /**
-     * @param $methodArg
-     * @param $apiName
+     * @param string $methodArg
+     * @param string|null $apiName
      * @return Method
      */
     public function find($methodArg, $apiName = null)
