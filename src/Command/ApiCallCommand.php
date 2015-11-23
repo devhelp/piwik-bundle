@@ -86,7 +86,7 @@ HELP
         $methodArg = $input->getArgument('method');
         $apiOption = $input->getOption('api');
 
-        $params = [];
+        $params = array();
 
         if ($input->hasOption('params')) {
             parse_str($input->getOption('params'), $params);
