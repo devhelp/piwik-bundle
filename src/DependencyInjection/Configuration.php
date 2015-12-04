@@ -19,6 +19,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('client')->isRequired()->end()
                 ->arrayNode('api')
+                    ->isRequired()
                     ->requiresAtLeastOneElement()
                     ->prototype('array')
                         ->children()

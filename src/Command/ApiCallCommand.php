@@ -72,7 +72,7 @@ Use <comment>-vv</comment> in order to display relevant information about the on
 
   <info>php %command.full_name% my_method_service_id -vv</info>
 
-Use <comment>--show-response</comment> together with <comment>-vv</comment> in order to display the response. <warning>Response must be PSR-7 compatible</warning>
+Use <comment>--show-response</comment> together with <comment>-vv</comment> in order to display the response. <comment>Response must be PSR-7 compatible</comment>
 
   <info>php %command.full_name% my_method_service_id -vv --show-response</info>
 

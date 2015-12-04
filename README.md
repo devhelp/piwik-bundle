@@ -9,6 +9,30 @@ For more information please check [composer website](http://getcomposer.org).
 $ composer require 'devhelp/piwik-bundle:dev-master'
 ```
 
+Add the bundle to `AppKernel`
+
+```php
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = array(
+            //...
+            new \Devhelp\PiwikBundle\DevhelpPiwikBundle(),
+            //...
+        );
+
+        //...
+
+        return $bundles;
+    }
+
+    //...
+}
+```
+
+Full working example can be found at [devhelp/piwik-bundle-sandbox](http://github.com/devhelp/piwik-bundle-sandbox)
+
 ## Purpose
 
 Bundle provides integration with [Piwik API](http://developer.piwik.org/api-reference/reporting-api). Adds services to the dependency injection container that allows to use Piwik API methods as services.
@@ -107,33 +131,36 @@ devhelp_piwik:
 my_token_auth_provider:
     class: Acme\DemoBundle\Param\MyTokenAuthProvider
     arguments:
-        - @security.context
+        - @security.token_storage
 ```
 
-`MyTokenAuthProvider` class definition
+`MyTokenAuthProvider` class definition (assumes that User class has getPiwikToken method)
 
 ```php
 namespace Acme\DemoBundle\Param;
 
-
 use Devhelp\Piwik\Api\Param\Param;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class MyTokenAuthProvider implements Param
 {
 
     /**
-     * @var SecurityContext
+     * @var TokenStorageInterface
      */
-    private $securityContext;
+    private $tokenStorage;
 
-    public function __construct(SecurityContext $securityContext)
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
-        $this->securityContext = $securityContext;
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function value()
     {
-        return $this->securityContext->getToken()->getUser()->getPiwikToken();
+        $token = $this->tokenStorage->getToken();
+
+        return $token instanceof TokenInterface ? $token->getUser()->getPiwikToken() : null;
     }
 }
 ```
