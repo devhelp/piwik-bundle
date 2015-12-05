@@ -31,6 +31,8 @@ class AppKernel extends Kernel
 }
 ```
 
+### Sandbox
+
 Full working example can be found at [devhelp/piwik-bundle-sandbox](http://github.com/devhelp/piwik-bundle-sandbox)
 
 ## Purpose
@@ -196,4 +198,4 @@ Feel free to create an issue if you think that something is missing or needs fix
 
 ## Credits
 
-Brought to you by : [devhelp.pl](http://devhelp.pl)
+Brought to you by: [devhelp.pl](http://devhelp.pl)
