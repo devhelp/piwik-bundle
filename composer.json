@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": ">=5.3",
-        "symfony/framework-bundle": "^2.3",
-        "symfony/console": "^2.3",
+        "symfony/framework-bundle": "~2.3|~3.0",
+        "symfony/console": "~2.3|~3.0",
         "devhelp/piwik-api": ">=0.3"
     },
     "require-dev": {
