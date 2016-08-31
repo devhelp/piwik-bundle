@@ -65,7 +65,7 @@ my_piwik.client:
     class: Devhelp\Piwik\Api\Guzzle\Client\PiwikGuzzleClient
     arguments:
         # guzzle service must implement GuzzleHttp\ClientInterface
-        - @guzzle
+        - '@guzzle'
 ```
 
 ### Use API method in your use case
@@ -77,7 +77,7 @@ my_service:
     class: Acme\DemoBundle\Service\MyService
     arguments:
         # it is an alias of first configured api (in this case it equals devhelp_piwik.api.reader service)
-        - @devhelp_piwik.api
+        - '@devhelp_piwik.api'
 ```
 
 service definition
@@ -133,7 +133,7 @@ devhelp_piwik:
 my_token_auth_provider:
     class: Acme\DemoBundle\Param\MyTokenAuthProvider
     arguments:
-        - @security.token_storage
+        - '@security.token_storage'
 ```
 
 `MyTokenAuthProvider` class definition (assumes that User class has getPiwikToken method)
@@ -173,7 +173,7 @@ class MyTokenAuthProvider implements Param
 my_piwik_method:
     class: Devhelp\Piwik\Api\Method\Method
     factory:
-        - @devhelp_piwik.api
+        - '@devhelp_piwik.api'
         - getMethod
     arguments:
         - VisitFrequency.get
