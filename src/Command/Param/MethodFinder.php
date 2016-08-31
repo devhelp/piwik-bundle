@@ -45,7 +45,6 @@ class MethodFinder
             if ($apiName) {
                 $this->logger->warning("'$apiName' api name will be ignored");
             }
-
         } else {
             $api = $this->getApi($apiName);
 
