@@ -48,7 +48,18 @@ class MethodFinderTest extends \PHPUnit_Framework_TestCase
      */
     public function it_throws_exception_if_matched_service_is_not_an_instance_of_Method()
     {
-        $this->given_container_has_non_method_service();
+        $this->given_container_has_no_method_service();
+        $this->when_find_is_called();
+    }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function it_throws_exception_if_api_service_does_not_exist()
+    {
+        $this->given_container_does_not_have_method_service();
+        $this->given_container_does_not_have_api_service();
         $this->when_find_is_called();
     }
 
@@ -91,7 +102,7 @@ class MethodFinderTest extends \PHPUnit_Framework_TestCase
             ->willReturn(false);
     }
 
-    private function given_container_has_non_method_service()
+    private function given_container_has_no_method_service()
     {
         $this->container
             ->expects($this->any())
@@ -136,6 +147,15 @@ class MethodFinderTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->with('devhelp_piwik.api.api_opt')
             ->willReturn($this->apiService);
+    }
+
+    private function given_container_does_not_have_api_service()
+    {
+        $this->container
+            ->expects($this->at(1))
+            ->method('has')
+            ->with('devhelp_piwik.api.api_opt')
+            ->willReturn(false);
     }
 
     private function when_find_is_called()

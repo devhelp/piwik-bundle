@@ -59,7 +59,7 @@ class MethodFinder
     }
 
     /**
-     * @param $apiName
+     * @param string|null $apiName
      * @return Api
      */
     private function getApi($apiName)
@@ -74,7 +74,7 @@ class MethodFinder
     }
 
     /**
-     * @param $apiName
+     * @param string|null $apiName
      * @return string
      */
     private function getApiServiceId($apiName)
@@ -89,8 +89,8 @@ class MethodFinder
     }
 
     /**
-     * @param $methodArg
-     * @param $method
+     * @param string $methodArg
+     * @param object $method
      */
     private function checkIsInstanceOfMethod($methodArg, $method)
     {
