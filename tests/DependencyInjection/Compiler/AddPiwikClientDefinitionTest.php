@@ -28,6 +28,7 @@ class AddPiwikClientDefinitionTest extends \PHPUnit_Framework_TestCase
     {
         $this->container = new ContainerBuilder();
         $this->compilerPass = new AddPiwikClientDefinition();
+        $this->serviceId = 'my.piwik.client';
     }
 
     /**
@@ -44,8 +45,9 @@ class AddPiwikClientDefinitionTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage my.piwik.client service does not exist
      */
-    public function it_throws_exception_if_there_is_not_service_defined_as_a_client()
+    public function it_throws_exception_if_there_is_no_service_defined_as_a_client()
     {
         $this->given_the_service_does_not_exist();
         $this->when_compiler_is_processed();
@@ -53,7 +55,6 @@ class AddPiwikClientDefinitionTest extends \PHPUnit_Framework_TestCase
 
     private function given_piwik_client_was_set()
     {
-        $this->serviceId = 'my.piwik.client';
         $this->container->setParameter('devhelp_piwik.client.service_id', $this->serviceId);
     }
 
@@ -64,6 +65,7 @@ class AddPiwikClientDefinitionTest extends \PHPUnit_Framework_TestCase
 
     private function given_the_service_does_not_exist()
     {
+        $this->container->setParameter('devhelp_piwik.client.service_id', $this->serviceId);
         $this->container->removeDefinition($this->serviceId);
     }
 

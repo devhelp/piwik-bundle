@@ -28,7 +28,8 @@
     "scripts": {
         "phpcs": "./bin/phpcs --standard=phpcs.xml src/",
         "phpcbf": "./bin/phpcbf --standard=phpcs.xml src/",
-        "tests": "./bin/phpunit"
+        "tests": "./bin/phpunit",
+        "tests-cov": "./bin/phpunit --coverage-html=./coverage"
     },
     "config": {
         "bin-dir": "bin"
