@@ -2,7 +2,6 @@
 
 namespace Devhelp\PiwikBundle;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class DevhelpPiwikBundleTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,23 +12,27 @@ class DevhelpPiwikBundleTest extends \PHPUnit_Framework_TestCase
     private $bundle;
 
     /**
-     * @var ContainerBuilder
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     private $container;
 
     protected function setUp()
     {
-        $this->container = new ContainerBuilder();
+        $this->container = $this
+            ->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->bundle = new DevhelpPiwikBundle();
     }
 
     /**
      * @test
      */
-    public function it_adds_compiler_passes_to_the_container()
+    public function it_adds_compiler_passes()
     {
+        $this->it_adds_compiler_passes_to_the_container();
         $this->when_bundle_is_built();
-        $this->then_compiler_passes_are_added();
     }
 
     private function when_bundle_is_built()
@@ -37,19 +40,20 @@ class DevhelpPiwikBundleTest extends \PHPUnit_Framework_TestCase
         $this->bundle->build($this->container);
     }
 
-    private function then_compiler_passes_are_added()
+    private function it_adds_compiler_passes_to_the_container()
     {
-        $passes = $this->container->getCompiler()->getPassConfig()->getBeforeOptimizationPasses();
+        $this->container
+            ->expects($this->at(0))
+            ->method('addCompilerPass')
+            ->with($this->callback(function ($object) {
+                return get_class($object) == 'Devhelp\PiwikBundle\DependencyInjection\Compiler\AddPiwikClientDefinition';
+            }));
 
-        $classes = array_map(function ($pass) {
-            return get_class($pass);
-        }, $passes);
-
-        $expectedPassClasses = array(
-            'Devhelp\PiwikBundle\DependencyInjection\Compiler\AddPiwikClientDefinition',
-            'Devhelp\PiwikBundle\DependencyInjection\Compiler\InsertParamsServices'
-        );
-
-        $this->assertEquals($expectedPassClasses, $classes);
+        $this->container
+            ->expects($this->at(1))
+            ->method('addCompilerPass')
+            ->with($this->callback(function ($object) {
+                return get_class($object) == 'Devhelp\PiwikBundle\DependencyInjection\Compiler\InsertParamsServices';
+            }));
     }
 }
