@@ -31,9 +31,7 @@ class AddPiwikClientDefinitionTest extends \PHPUnit_Framework_TestCase
         $this->serviceId = 'my.piwik.client';
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_aliases_client_service_definition()
     {
         $this->given_piwik_client_was_set();

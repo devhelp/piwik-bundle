@@ -9,7 +9,6 @@ use Symfony\Component\DependencyInjection\Definition;
 class InsertParamsServicesIntegrationTest extends \PHPUnit_Framework_TestCase
 {
 
-
     /**
      * @var ContainerBuilder
      */
@@ -42,9 +41,7 @@ class InsertParamsServicesIntegrationTest extends \PHPUnit_Framework_TestCase
         $this->paramServiceId = 'my_param_service';
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_replaces_params_with_services()
     {
         $this->given_params_are_referencing_to_services();

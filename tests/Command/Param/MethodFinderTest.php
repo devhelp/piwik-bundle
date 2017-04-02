@@ -4,11 +4,13 @@
 namespace Devhelp\PiwikBundle\Command\Param;
 
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 class MethodFinderTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var ContainerInterface|\PHPUnit_Framework_MockObject_MockObject
      */
     private $container;
 
@@ -32,9 +34,7 @@ class MethodFinderTest extends \PHPUnit_Framework_TestCase
         $this->methodFinder = new MethodFinder($this->container);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_returns_method_service()
     {
         $this->given_container_has_method_service();
@@ -63,9 +63,7 @@ class MethodFinderTest extends \PHPUnit_Framework_TestCase
         $this->when_find_is_called();
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_returns_method_using_Api()
     {
         $this->given_container_does_not_have_method_service();
@@ -126,7 +124,7 @@ class MethodFinderTest extends \PHPUnit_Framework_TestCase
         $this->container
             ->expects($this->at(1))
             ->method('has')
-            ->with('devhelp_piwik.api.api_opt')
+            ->with('devhelp_piwik.api.api_name')
             ->willReturn(true);
 
         $this->methodService = $this->getMockBuilder('Devhelp\Piwik\Api\Method\Method')
@@ -145,7 +143,7 @@ class MethodFinderTest extends \PHPUnit_Framework_TestCase
         $this->container
             ->expects($this->any())
             ->method('get')
-            ->with('devhelp_piwik.api.api_opt')
+            ->with('devhelp_piwik.api.api_name')
             ->willReturn($this->apiService);
     }
 
@@ -154,13 +152,13 @@ class MethodFinderTest extends \PHPUnit_Framework_TestCase
         $this->container
             ->expects($this->at(1))
             ->method('has')
-            ->with('devhelp_piwik.api.api_opt')
+            ->with('devhelp_piwik.api.api_name')
             ->willReturn(false);
     }
 
     private function when_find_is_called()
     {
-        $this->result = $this->methodFinder->find('method_arg', 'api_opt');
+        $this->result = $this->methodFinder->find('method_arg', 'api_name');
     }
 
     private function then_method_is_returned_from_the_service()

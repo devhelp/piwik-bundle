@@ -33,6 +33,10 @@ class DevhelpPiwikExtension extends Extension
 
         $configuration = new Configuration();
 
+        if ($this->allConfigsAreEmpty($configs)) {
+            return;
+        }
+
         $this->config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('devhelp_piwik.client.service_id', $this->config['client']);
@@ -64,5 +68,16 @@ class DevhelpPiwikExtension extends Extension
         $this->apiParams[$name] = $data['default_params'];
 
         $this->container->setDefinition('devhelp_piwik.api.'.$name, $apiDefinition);
+    }
+
+    private function allConfigsAreEmpty(array $configs)
+    {
+        foreach ($configs as $config) {
+            if ($config) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -23,9 +23,7 @@ class DevhelpPiwikBundleTest extends \PHPUnit_Framework_TestCase
         $this->bundle = new DevhelpPiwikBundle();
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_adds_compiler_passes_to_the_container()
     {
         $this->when_bundle_is_built();

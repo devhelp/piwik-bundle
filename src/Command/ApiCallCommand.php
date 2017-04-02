@@ -96,24 +96,30 @@ HELP
 
         $method = $this->getMethod($methodArg, $apiOption);
 
-        $this->logger->info("Calling api...");
-        $this->logger->info("- method: ".$method->name());
-        $this->logger->info("- url: ".$method->url());
+        $callDetails = array();
+        $callDetails[] = "Calling api...";
+        $callDetails[] = "- method: ".$method->name();
+        $callDetails[] = "- url: ".$method->url();
 
         if ($params) {
-            $this->logger->info("- extra params: ");
-            $this->logger->info(var_export($params, true));
+            $callDetails[] = "- extra params: ";
+            $callDetails[] = var_export($params, true);
         }
+
+        $this->logger->info(implode(PHP_EOL, $callDetails));
 
         $response = $method->call($params);
 
-        $this->logger->info('Finished');
+        $resultDetails = array();
+        $resultDetails[] = "Finished";
 
         if ($input->getOption('show-response') && $response instanceof ResponseInterface) {
-            $this->logger->info('Response:');
-            $this->logger->info("- status code: ".$response->getStatusCode());
-            $this->logger->info("- body: ".$response->getBody()->getContents());
+            $resultDetails[] = "Response:";
+            $resultDetails[] = "- status code: ".$response->getStatusCode();
+            $resultDetails[] = "- body: ".$response->getBody()->getContents();
         }
+
+        $this->logger->info(implode(PHP_EOL, $resultDetails));
     }
 
     /**
