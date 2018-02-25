@@ -43,11 +43,7 @@ class DevhelpPiwikBundleTest extends \PHPUnit_Framework_TestCase
             return get_class($pass);
         }, $passes);
 
-        $expectedPassClasses = array(
-            'Devhelp\PiwikBundle\DependencyInjection\Compiler\AddPiwikClientDefinition',
-            'Devhelp\PiwikBundle\DependencyInjection\Compiler\InsertParamsServices'
-        );
-
-        $this->assertEquals($expectedPassClasses, $classes);
+        $this->assertContains('Devhelp\PiwikBundle\DependencyInjection\Compiler\AddPiwikClientDefinition', $classes);
+		$this->assertContains('Devhelp\PiwikBundle\DependencyInjection\Compiler\InsertParamsServices', $classes);
     }
 }
