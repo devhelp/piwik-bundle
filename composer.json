@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3",
+        "php": ">=5.4",
         "symfony/framework-bundle": "~2.3|~3.0|~4.0",
         "symfony/console": "~2.3|~3.0|~4.0",
         "devhelp/piwik-api": ">=0.3"

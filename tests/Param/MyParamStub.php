@@ -9,6 +9,6 @@ class MyParamStub implements Param
 {
     public function value()
     {
-        return array('stub_param' => 'value');
+        return ['stub_param' => 'value'];
     }
 }

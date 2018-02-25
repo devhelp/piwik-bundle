@@ -16,7 +16,7 @@ class InsertParamsServices implements CompilerPassInterface
         foreach ($apiParams as $api => $params) {
             $apiDefinition = $container->getDefinition('devhelp_piwik.api.'.$api);
 
-            $defaultParams = array();
+            $defaultParams = [];
 
             foreach ($params as $name => $value) {
                 if ($container->has($value)) {
@@ -32,7 +32,7 @@ class InsertParamsServices implements CompilerPassInterface
                 }
             }
 
-            $apiDefinition->addMethodCall('setDefaultParams', array($defaultParams));
+            $apiDefinition->addMethodCall('setDefaultParams', [$defaultParams]);
         }
     }
 }

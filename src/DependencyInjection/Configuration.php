@@ -33,7 +33,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                             ->variableNode('default_params')
                                 ->info('default parameters which are going to be used in api call')
-                                ->defaultValue(array())
+                                ->defaultValue([])
                             ->end()
                         ->end()
                     ->end()

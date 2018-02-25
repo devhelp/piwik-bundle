@@ -86,7 +86,7 @@ HELP
         $methodArg = $input->getArgument('method');
         $apiOption = $input->getOption('api');
 
-        $params = array();
+        $params = [];
 
         if ($input->hasOption('params')) {
             parse_str($input->getOption('params'), $params);
@@ -96,7 +96,7 @@ HELP
 
         $method = $this->getMethod($methodArg, $apiOption);
 
-        $callDetails = array();
+        $callDetails = [];
         $callDetails[] = "Calling api...";
         $callDetails[] = "- method: ".$method->name();
         $callDetails[] = "- url: ".$method->url();
@@ -110,7 +110,7 @@ HELP
 
         $response = $method->call($params);
 
-        $resultDetails = array();
+        $resultDetails = [];
         $resultDetails[] = "Finished";
 
         if ($input->getOption('show-response') && $response instanceof ResponseInterface) {

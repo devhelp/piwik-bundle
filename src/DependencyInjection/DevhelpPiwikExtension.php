@@ -20,7 +20,7 @@ class DevhelpPiwikExtension extends Extension
      *
      * @var array
      */
-    private $apiParams = array();
+    private $apiParams = [];
 
     /**
      * @var ContainerBuilder
@@ -60,10 +60,10 @@ class DevhelpPiwikExtension extends Extension
 
     private function addApi($name, $data)
     {
-        $apiDefinition = new Definition('Devhelp\Piwik\Api\Api', array(
+        $apiDefinition = new Definition('Devhelp\Piwik\Api\Api', [
             new Reference('devhelp_piwik.client'),
             $data['url']
-        ));
+        ]);
 
         $this->apiParams[$name] = $data['default_params'];
 
